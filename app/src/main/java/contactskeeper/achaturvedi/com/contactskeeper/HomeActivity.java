@@ -1,6 +1,7 @@
 package contactskeeper.achaturvedi.com.contactskeeper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,10 +29,16 @@ public class HomeActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_addContact) {
+            toDetailsActivity();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void toDetailsActivity() {
+        Intent intent = new Intent(this, DetailsActivity.class);
+        startActivity(intent);
     }
 }
