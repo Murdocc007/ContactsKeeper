@@ -5,13 +5,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class HomeActivity extends Activity {
 
+    ListView contactList;
+    ContactDataModel contactDataModel;
+    ArrayList<ContactDataModel> contacyDataModelArrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        contactList = (ListView) findViewById(R.id.contactList);
+
     }
 
     @Override
@@ -38,7 +46,7 @@ public class HomeActivity extends Activity {
     }
 
     public void toDetailsActivity() {
-        Intent intent = new Intent(this, DetailsActivity.class);
+        Intent intent = new Intent(this, DetailsActivity.class).putExtra("action", "add");
         startActivity(intent);
     }
 }
