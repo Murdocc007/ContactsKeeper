@@ -31,7 +31,9 @@ public class ContactDataAdapter extends ArrayAdapter{
         }
 
         fullName = (TextView)convertView.findViewById(R.id.fullName);
+        fullName.setText(contactDataModelArrayList.get(position).getFname()+" "+contactDataModelArrayList.get(position).getLname());
         phoneNum = (TextView)convertView.findViewById(R.id.phoneNum);
+        phoneNum.setText(contactDataModelArrayList.get(position).getPhone());
         return convertView;
     }
 }

@@ -19,7 +19,21 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         contactList = (ListView) findViewById(R.id.contactList);
+        ContactDataModel c1 = new ContactDataModel();
+        ContactDataModel c2 = new ContactDataModel();
+        ContactDataModel c3 = new ContactDataModel();
+        ContactDataModel c4 = new ContactDataModel();
+        ContactDataModel c5 = new ContactDataModel();
+        ContactDataModel c6 = new ContactDataModel();
+        contacyDataModelArrayList.add(c1);
+        contacyDataModelArrayList.add(c2);
+        contacyDataModelArrayList.add(c3);
+        contacyDataModelArrayList.add(c4);
+        contacyDataModelArrayList.add(c5);
+        contacyDataModelArrayList.add(c6);
 
+        ContactDataAdapter contactDataAdapter = new ContactDataAdapter(getApplicationContext(), contacyDataModelArrayList);
+        contactList.setAdapter(contactDataAdapter);
     }
 
     @Override

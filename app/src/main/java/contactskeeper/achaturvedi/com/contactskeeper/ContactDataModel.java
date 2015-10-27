@@ -9,6 +9,12 @@ public class ContactDataModel {
     private String email;
     private String phone;
 
+    //temporary constructor
+    ContactDataModel() {
+        fname = "RaviKant";
+        lname = "Pandey";
+        phone = "(469)774-6884";
+    }
     //setters
     public void setFname(String fName) {
         this.fname = fName;
