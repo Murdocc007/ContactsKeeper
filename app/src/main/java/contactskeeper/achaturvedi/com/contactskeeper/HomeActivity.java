@@ -9,8 +9,11 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import android.util.Log;
 
 public class HomeActivity extends Activity {
+
+    private static final String tag="fuck";
 
     ListView contactList;
     ContactDataModel contactDataModel;
@@ -20,25 +23,29 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         contactList = (ListView) findViewById(R.id.contactList);
-        ContactDataModel c1 = new ContactDataModel();
-        ContactDataModel c2 = new ContactDataModel();
-        c2.setFname("Akash");
-        ContactDataModel c3 = new ContactDataModel();
-        ContactDataModel c4 = new ContactDataModel();
-        ContactDataModel c5 = new ContactDataModel();
-        ContactDataModel c6 = new ContactDataModel();
-        contactDataModelArrayList.add(c1);
-        contactDataModelArrayList.add(c2);
-        contactDataModelArrayList.add(c3);
-        contactDataModelArrayList.add(c4);
-        contactDataModelArrayList.add(c5);
-        contactDataModelArrayList.add(c6);
+
+
+        FileWriter fw=new FileWriter(this.getApplicationContext());
+        ArrayList<ContactDataModel> dataList=fw.getContactObject();
+
+        for (ContactDataModel temp:dataList)
+        {
+            contactDataModelArrayList.add(temp);
+        }
 
         ContactDataAdapter contactDataAdapter = new ContactDataAdapter(getApplicationContext(), contactDataModelArrayList);
         contactList.setAdapter(contactDataAdapter);
 
         Collections.sort(contactDataModelArrayList, ContactDataModel.firstNameComparator);
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(tag, "onResume");
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

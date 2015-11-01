@@ -51,9 +51,9 @@
             android:layout_height="wrap_content"
             android:text="@string/cancel"
             android:id="@+id/newcancelButton"
-            android:layout_marginBottom="90dp"
+            android:layout_marginBottom="88dp"
             android:layout_alignParentBottom="true"
-            android:layout_toStartOf="@+id/newsaveButton" />
+            android:layout_toEndOf="@+id/emailId" />
 
         <Button
             android:layout_width="wrap_content"
@@ -62,8 +62,8 @@
             android:id="@+id/newsaveButton"
             android:singleLine="true"
             android:layout_alignTop="@+id/newcancelButton"
-            android:layout_toEndOf="@+id/phoneNumber"
-            android:layout_marginStart="105dp" />
+            android:layout_alignEnd="@+id/newphoneNumberField"
+            android:layout_marginEnd="43dp" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -99,7 +99,7 @@
             android:ems="10"
             android:id="@+id/newphoneNumberField"
             android:layout_alignBottom="@+id/phoneNumber"
-            android:layout_toEndOf="@+id/phoneNumber" />
+            android:layout_alignStart="@+id/newemailIdField" />
 
     </RelativeLayout>
 </LinearLayout>

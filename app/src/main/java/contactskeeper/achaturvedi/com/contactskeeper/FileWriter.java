@@ -74,7 +74,7 @@ public class FileWriter {
         ArrayList<ContactDataModel> inf=new ArrayList<ContactDataModel>();
         String str;
 
-        final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()  );
+        final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/Download" );
         File foo=new File(dir,"foo.txt");
 
         if(!foo.exists()) {
