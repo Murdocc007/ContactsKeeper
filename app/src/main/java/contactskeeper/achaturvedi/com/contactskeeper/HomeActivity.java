@@ -43,7 +43,7 @@ public class HomeActivity extends Activity {
         ContactDataAdapter contactDataAdapter = new ContactDataAdapter(getApplicationContext(), contactDataModelArrayList);
         contactList.setAdapter(contactDataAdapter);
 
-        //Collections.sort(contacyDataModelArrayList, ContactDataModel.firstNameComparator);
+        Collections.sort(contactDataModelArrayList, ContactDataModel.firstNameComparator);
     }
 
     @Override
