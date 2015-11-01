@@ -14,7 +14,7 @@ public class HomeActivity extends Activity {
 
     ListView contactList;
     ContactDataModel contactDataModel;
-    ArrayList<ContactDataModel> contacyDataModelArrayList = new ArrayList<>();
+    ArrayList<ContactDataModel> contactDataModelArrayList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,20 +27,20 @@ public class HomeActivity extends Activity {
         ContactDataModel c4 = new ContactDataModel();
         ContactDataModel c5 = new ContactDataModel();
         ContactDataModel c6 = new ContactDataModel();
-        contacyDataModelArrayList.add(c1);
-        contacyDataModelArrayList.add(c2);
-        contacyDataModelArrayList.add(c3);
-        contacyDataModelArrayList.add(c4);
-        contacyDataModelArrayList.add(c5);
-        contacyDataModelArrayList.add(c6);
+        contactDataModelArrayList.add(c1);
+        contactDataModelArrayList.add(c2);
+        contactDataModelArrayList.add(c3);
+        contactDataModelArrayList.add(c4);
+        contactDataModelArrayList.add(c5);
+        contactDataModelArrayList.add(c6);
 
 
-        for(ContactDataModel str: contacyDataModelArrayList){
+        for(ContactDataModel str: contactDataModelArrayList){
             System.out.println(str);
         }
 
 
-        ContactDataAdapter contactDataAdapter = new ContactDataAdapter(getApplicationContext(), contacyDataModelArrayList);
+        ContactDataAdapter contactDataAdapter = new ContactDataAdapter(getApplicationContext(), contactDataModelArrayList);
         contactList.setAdapter(contactDataAdapter);
 
         //Collections.sort(contacyDataModelArrayList, ContactDataModel.firstNameComparator);
