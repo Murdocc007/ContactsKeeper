@@ -26,7 +26,7 @@ public class DetailsActivity extends Activity {
         setContentView(R.layout.activity_details);
 
 
-        Button saveButton=(Button)findViewById(R.id.newsaveButton);
+        Button saveButton=(Button)findViewById(R.id.modifyButton);
         Log.i(tag, "firstname");
         saveButton.setOnClickListener(
                 new Button.OnClickListener() {
@@ -37,15 +37,15 @@ public class DetailsActivity extends Activity {
                 }
         );
 
-        Button cancelButton=(Button)findViewById(R.id.newcancelButton);
-        cancelButton.setOnClickListener(
-                new Button.OnClickListener() {
-                    public void onClick(View v) {
-                        Log.v(tag,"asdfa");
-                        DetailsActivity.this.finish();
-                    }
-                }
-        );
+//        Button cancelButton=(Button)findViewById(R.id.newcancelButton);
+//        cancelButton.setOnClickListener(
+//                new Button.OnClickListener() {
+//                    public void onClick(View v) {
+//                        Log.v(tag,"asdfa");
+//                        DetailsActivity.this.finish();
+//                    }
+//                }
+//        );
 
     }
 
