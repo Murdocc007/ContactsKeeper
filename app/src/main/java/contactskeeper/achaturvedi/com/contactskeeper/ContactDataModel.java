@@ -13,8 +13,8 @@ public class ContactDataModel implements Comparable {
 
     //temporary constructor
     ContactDataModel() {
-        fname = "RaviKant";
-        lname = "Pandey";
+        fname = "Prajwal";
+        lname = "KesawaReddy";
         phone = "(469)774-6884";
     }
     //setters
