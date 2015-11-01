@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+
+import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +17,6 @@ import android.util.Log;
 
 public class HomeActivity extends Activity {
 
-    private static final String tag="fuck";
 
     ListView contactList;
     ContactDataModel contactDataModel;
@@ -23,10 +26,14 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         contactList = (ListView) findViewById(R.id.contactList);
+    }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         FileWriter fw=new FileWriter(this.getApplicationContext());
-        ArrayList<ContactDataModel> dataList=fw.getContactObject();
+        final ArrayList<ContactDataModel> dataList=fw.getContactObject();
 
         for (ContactDataModel temp:dataList)
         {
@@ -37,13 +44,15 @@ public class HomeActivity extends Activity {
         contactList.setAdapter(contactDataAdapter);
 
         Collections.sort(contactDataModelArrayList, ContactDataModel.firstNameComparator);
-    }
 
+        contactList.setOnItemClickListener(new OnItemClickListener() {
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i(tag, "onResume");
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ContactDataModel temp = (ContactDataModel) parent.getAdapter().getItem(position);
+                toDetailsActivity("modify",temp);
+            }
+        });
     }
 
 
@@ -63,15 +72,16 @@ public class HomeActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_addContact) {
-            toDetailsActivity();
+            toDetailsActivity("add",null);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void toDetailsActivity() {
-        Intent intent = new Intent(this, DetailsActivity.class).putExtra("action", "add");
+    public void toDetailsActivity(String action,ContactDataModel cdm) {
+        Intent intent = new Intent(this, DetailsActivity.class).putExtra("action", action);
+        intent.putExtra("dataObject",cdm);
         startActivity(intent);
     }
 }
