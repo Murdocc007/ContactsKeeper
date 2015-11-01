@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HomeActivity extends Activity {
 
@@ -21,6 +22,7 @@ public class HomeActivity extends Activity {
         contactList = (ListView) findViewById(R.id.contactList);
         ContactDataModel c1 = new ContactDataModel();
         ContactDataModel c2 = new ContactDataModel();
+        c2.setFname("Akash");
         ContactDataModel c3 = new ContactDataModel();
         ContactDataModel c4 = new ContactDataModel();
         ContactDataModel c5 = new ContactDataModel();
@@ -34,6 +36,8 @@ public class HomeActivity extends Activity {
 
         ContactDataAdapter contactDataAdapter = new ContactDataAdapter(getApplicationContext(), contactDataModelArrayList);
         contactList.setAdapter(contactDataAdapter);
+
+        Collections.sort(contactDataModelArrayList, ContactDataModel.firstNameComparator);
     }
 
     @Override

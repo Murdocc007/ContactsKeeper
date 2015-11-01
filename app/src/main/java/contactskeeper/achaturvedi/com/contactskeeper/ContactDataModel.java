@@ -1,9 +1,11 @@
 package contactskeeper.achaturvedi.com.contactskeeper;
 
+import java.util.Comparator;
+
 /**
  * Created by Akash on 10/27/2015.
  */
-public class ContactDataModel {
+public class ContactDataModel implements Comparable {
     private String fname;
     private String lname;
     private String email;
@@ -47,5 +49,25 @@ public class ContactDataModel {
 
     public String getPhone() {
         return this.phone;
+    }
+
+
+
+    public static Comparator<ContactDataModel> firstNameComparator = new Comparator<ContactDataModel>() {
+
+        public int compare(ContactDataModel c1, ContactDataModel c2) {
+            String fName1 = c1.getFname().toUpperCase();
+            String fName2 = c2.getFname().toUpperCase();
+
+            //ascending order
+            return fName1.compareTo(fName2);
+
+            //descending order
+            //return fName2.compareTo(fName1);
+        }};
+
+    @Override
+    public int compareTo(Object another) {
+        return 0;
     }
 }
