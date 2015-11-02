@@ -70,6 +70,9 @@ public class DetailsActivity extends Activity {
             str = (EditText) findViewById(R.id.newphoneNumberField);
             cdm.setPhone(str.getText().toString());
 
+            int id=Integer.parseInt(fw.getMaxId());
+            cdm.setId(String.valueOf(id+1));
+
             ArrayList<ContactDataModel> contactList=fw.getContactObject();
             contactList.add(cdm);
 
