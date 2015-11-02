@@ -155,4 +155,28 @@ public class FileWriter {
     }
 
 
+    public  String getMaxId() {
+        ContactDataModel temp;
+        String str;
+        int maxid=0;
+        final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/Download" );
+        File foo=new File(dir,"foo.txt");
+        try{
+            FileInputStream fis=fileContext.openFileInput(foo.getName());
+            BufferedReader br=new BufferedReader(new InputStreamReader(fis));
+            while((str=br.readLine())!=null)
+            {
+                temp=convertStringtoObject(str);
+                if(Integer.parseInt(temp.getId())>maxid){
+                    maxid=Integer.parseInt(temp.getId());
+                }
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+
+        return String.valueOf(maxid);
+    }
+
+
 }
