@@ -1,23 +1,27 @@
 package contactskeeper.achaturvedi.com.contactskeeper;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  * Created by Akash on 10/27/2015.
  */
-public class ContactDataModel implements Comparable {
+public class ContactDataModel implements Comparable,Serializable {
     private String fname;
     private String lname;
     private String email;
     private String phone;
+    private String id;
 
-    //temporary constructor
-    ContactDataModel() {
-        fname = "Prajwal";
-        lname = "KesawaReddy";
-        phone = "(469)774-6884";
-    }
-    //setters
+
+
+    //    //temporary constructor
+//    ContactDataModel() {
+//        fname = "Prajwal";
+//        lname = "KesawaReddy";
+//        phone = "(469)774-6884";
+//    }
+//    //setters
     public void setFname(String fName) {
         this.fname = fName;
     }
@@ -51,6 +55,13 @@ public class ContactDataModel implements Comparable {
         return this.phone;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
 
     public static Comparator<ContactDataModel> firstNameComparator = new Comparator<ContactDataModel>() {

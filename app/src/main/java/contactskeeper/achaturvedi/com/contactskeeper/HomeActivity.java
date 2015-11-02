@@ -5,12 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+
+import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import android.util.Log;
 
 public class HomeActivity extends Activity {
+
 
     ListView contactList;
     ContactDataModel contactDataModel;
@@ -20,25 +26,35 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         contactList = (ListView) findViewById(R.id.contactList);
-        ContactDataModel c1 = new ContactDataModel();
-        ContactDataModel c2 = new ContactDataModel();
-        c2.setFname("Akash");
-        ContactDataModel c3 = new ContactDataModel();
-        ContactDataModel c4 = new ContactDataModel();
-        ContactDataModel c5 = new ContactDataModel();
-        ContactDataModel c6 = new ContactDataModel();
-        contactDataModelArrayList.add(c1);
-        contactDataModelArrayList.add(c2);
-        contactDataModelArrayList.add(c3);
-        contactDataModelArrayList.add(c4);
-        contactDataModelArrayList.add(c5);
-        contactDataModelArrayList.add(c6);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FileWriter fw=new FileWriter(this.getApplicationContext());
+        final ArrayList<ContactDataModel> dataList=fw.getContactObject();
+
+        for (ContactDataModel temp:dataList)
+        {
+            contactDataModelArrayList.add(temp);
+        }
 
         ContactDataAdapter contactDataAdapter = new ContactDataAdapter(getApplicationContext(), contactDataModelArrayList);
         contactList.setAdapter(contactDataAdapter);
 
         Collections.sort(contactDataModelArrayList, ContactDataModel.firstNameComparator);
+
+        contactList.setOnItemClickListener(new OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ContactDataModel temp = (ContactDataModel) parent.getAdapter().getItem(position);
+                toDetailsActivity("modify",temp);
+            }
+        });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,15 +72,16 @@ public class HomeActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_addContact) {
-            toDetailsActivity();
+            toDetailsActivity("add",null);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void toDetailsActivity() {
-        Intent intent = new Intent(this, DetailsActivity.class).putExtra("action", "add");
+    public void toDetailsActivity(String action,ContactDataModel cdm) {
+        Intent intent = new Intent(this, DetailsActivity.class).putExtra("action", action);
+        intent.putExtra("dataObject",cdm);
         startActivity(intent);
     }
 }

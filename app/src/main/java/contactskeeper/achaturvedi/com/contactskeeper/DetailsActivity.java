@@ -1,5 +1,6 @@
 package contactskeeper.achaturvedi.com.contactskeeper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.text.Layout;
@@ -19,19 +20,20 @@ import android.util.Log;
 
 public class DetailsActivity extends Activity {
 
-    private static final String tag="here";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        Bundle homedata=getIntent().getExtras();
+        String action=homedata.getString("action");
 
         Button saveButton=(Button)findViewById(R.id.modifyButton);
-        Log.i(tag, "firstname");
+
         saveButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        Log.i(tag, "firstname");
                         saveData();
                     }
                 }
@@ -41,7 +43,6 @@ public class DetailsActivity extends Activity {
 //        cancelButton.setOnClickListener(
 //                new Button.OnClickListener() {
 //                    public void onClick(View v) {
-//                        Log.v(tag,"asdfa");
 //                        DetailsActivity.this.finish();
 //                    }
 //                }
@@ -68,6 +69,9 @@ public class DetailsActivity extends Activity {
             str = (EditText) findViewById(R.id.newphoneNumberField);
             cdm.setPhone(str.getText().toString());
 
+            int id=Integer.parseInt(fw.getMaxId());
+            cdm.setId(String.valueOf(id+1));
+
             ArrayList<ContactDataModel> contactList=fw.getContactObject();
             contactList.add(cdm);
 
@@ -77,11 +81,11 @@ public class DetailsActivity extends Activity {
     }
 
     public boolean validateFields() {
-        Log.i(tag,"firstname");
+
 
         EditText firstName = (EditText) findViewById(R.id.newfirstNameField);
         if (firstName.getText().toString().length() == 0) {
-            Log.i(tag,"firstname");
+
             firstName.setError("First name is required!");
             return false;
         }
