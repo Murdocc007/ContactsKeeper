@@ -125,7 +125,7 @@ public class DetailsActivity extends Activity {
 
             fw.setContactObject(contactList);
 
-            removeDataFromFields();
+            //removeDataFromFields();
             Toast.makeText(getApplicationContext(), "data added", Toast.LENGTH_SHORT).show();
             finish();
         }
