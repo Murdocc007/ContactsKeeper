@@ -40,7 +40,7 @@ public class FileWriter {
         try {
 
             final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/" );
-            File foo=new File(dir,"foo.txt");
+            File foo=new File(dir,"foo2.txt");
 
             PrintStream pr = new PrintStream(fileContext.openFileOutput(foo.getName(), Context.MODE_PRIVATE));
 
@@ -63,6 +63,11 @@ public class FileWriter {
                 str="(emailAddress:"+str+")";
                 pr.print(str);
 
+
+                str=temp.getId();
+                str="(id:"+str+")";
+                pr.print(str);
+
                 pr.println("");
             }
         } catch(Exception ex) {
@@ -75,7 +80,7 @@ public class FileWriter {
         String str;
 
         final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/Download" );
-        File foo=new File(dir,"foo.txt");
+        File foo=new File(dir,"foo2.txt");
 
         if(!foo.exists()) {
             try {
@@ -121,6 +126,10 @@ public class FileWriter {
                 inf.setEmail(e.getValue());
             }
 
+            if(e.getKey().equals("id")){
+                inf.setId(e.getValue());
+            }
+
         }
         return inf;
 
@@ -140,7 +149,7 @@ public class FileWriter {
 
     private void clearContents(){
         final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/" );
-        File foo=new File(dir,"foo.txt");
+        File foo=new File(dir,"foo2.txt");
         try{
             FileOutputStream writer = fileContext.openFileOutput(foo.getName(),Context.MODE_PRIVATE);
 
@@ -160,7 +169,7 @@ public class FileWriter {
         String str;
         int maxid=0;
         final File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/Download" );
-        File foo=new File(dir,"foo.txt");
+        File foo=new File(dir,"foo2.txt");
         try{
             FileInputStream fis=fileContext.openFileInput(foo.getName());
             BufferedReader br=new BufferedReader(new InputStreamReader(fis));

@@ -35,14 +35,16 @@ public class HomeActivity extends Activity {
         super.onResume();
         FileWriter fw=new FileWriter(this.getApplicationContext());
         final ArrayList<ContactDataModel> dataList=fw.getContactObject();
-
+        contactDataModelArrayList.removeAll(contactDataModelArrayList);
         for (ContactDataModel temp:dataList)
         {
             contactDataModelArrayList.add(temp);
         }
 
         contactDataAdapter = new ContactDataAdapter(getApplicationContext(), contactDataModelArrayList);
+
         contactList.setAdapter(contactDataAdapter);
+
 
         //Collections.sort(contactDataModelArrayList, ContactDataModel.firstNameComparator);
 
