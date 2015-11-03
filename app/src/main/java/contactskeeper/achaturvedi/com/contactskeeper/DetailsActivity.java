@@ -24,6 +24,7 @@ public class DetailsActivity extends Activity {
     Button modifyButton, deleteButton, addButton;
     EditText fNameField, lNameField, emailField, phoneField;
     LinearLayout buttonContainer;
+    ContactDataModel cdm;
     int id;
     private static final String tag="here";
 
@@ -49,7 +50,7 @@ public class DetailsActivity extends Activity {
         //there would be two different functions here based on the action
         //the corresponding function will be called
         if (action.equals("modify")) {
-            ContactDataModel cdm = (ContactDataModel)getIntent().getSerializableExtra("dataObject");
+            cdm = (ContactDataModel)getIntent().getSerializableExtra("dataObject");
             fillDataFields(cdm);
             buttonContainer.setVisibility(ViewGroup.VISIBLE);
             addButton.setVisibility(View.INVISIBLE);
@@ -74,7 +75,7 @@ public class DetailsActivity extends Activity {
                 new Button.OnClickListener() {
                     public void onClick(View v) {
                         Log.i(tag, "firstname");
-                        modifyDataInFile();
+                        modifyDataInFile(cdm);
                     }
                 }
         );
@@ -125,21 +126,64 @@ public class DetailsActivity extends Activity {
             fw.setContactObject(contactList);
 
             removeDataFromFields();
-            Toast.makeText(getApplicationContext(), "data added", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(), "data added", Toast.LENGTH_LONG);
 
         }
     }
 
     /*read this particular object from the fields and modify the arraylist and write to
     file*/
-    public void modifyDataInFile() {
+    public void modifyDataInFile(ContactDataModel cdm) {
         if (validateFields()) {
+            //first read all data from the file and
+           // ArrayList<ContactDataModel> contactDataModelArrayList = new ArrayList<>();
+            FileWriter fw=new FileWriter(this.getApplicationContext());
+
+            final ArrayList<ContactDataModel> dataList=fw.getContactObject();
+            int i = 0;
+            for (ContactDataModel temp:dataList)
+            {
+                if(temp.getId().equals(cdm.getId())) {
+                    //modify this item and add modified item in the list
+                    //temp = dataList.get(i);
+                    dataList.get(i).setFname(fNameField.getText().toString());
+                    dataList.get(i).setLname(lNameField.getText().toString());
+                    dataList.get(i).setEmail(emailField.getText().toString());
+                    dataList.get(i).setPhone(phoneField.getText().toString());
+
+                    break;
+                }
+                i++;
+            }
+            fw.setContactObject(dataList);
+            removeDataFromFields();
+            Toast.makeText(getApplicationContext(), "data modified", Toast.LENGTH_LONG);
 
         }
     }
 
     public void deleteData() {
+        if (validateFields()) {
+            //first read all data from the file and
+            // ArrayList<ContactDataModel> contactDataModelArrayList = new ArrayList<>();
+            FileWriter fw=new FileWriter(this.getApplicationContext());
 
+            final ArrayList<ContactDataModel> dataList=fw.getContactObject();
+            int i = 0;
+            for (ContactDataModel temp:dataList)
+            {
+                if(temp.getId().equals(cdm.getId())) {
+                    //remove this item from the list
+                    dataList.remove(i);
+                    break;
+                }
+                i++;
+            }
+            fw.setContactObject(dataList);
+            removeDataFromFields();
+            Toast.makeText(getApplicationContext(), "data deleted", Toast.LENGTH_LONG);
+
+        }
     }
     public boolean validateFields() {
 
