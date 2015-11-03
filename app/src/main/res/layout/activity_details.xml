@@ -118,6 +118,7 @@
             android:id="@+id/phoneNumber"
             android:gravity="center_vertical|right" />
 
+
         <EditText
             android:layout_width="0dp"
             android:layout_weight="70"
@@ -181,8 +182,6 @@
                 android:text="Save"
                 android:id="@+id/addButton" />
         </RelativeLayout>
-
-
 
 
     </LinearLayout>

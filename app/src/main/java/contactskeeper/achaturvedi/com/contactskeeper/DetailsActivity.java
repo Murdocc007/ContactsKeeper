@@ -1,5 +1,6 @@
 package contactskeeper.achaturvedi.com.contactskeeper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.text.Layout;
@@ -22,10 +23,21 @@ public class DetailsActivity extends Activity {
     Button modifyButton, deleteButton, addButton;
     EditText fNameField, lNameField, emailField, phoneField;
     private static final String tag="here";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        Bundle homedata=getIntent().getExtras();
+        String action=homedata.getString("action");
+
+        //there would be two different functions here based on the action
+        //the corresponding function will be called
+        if (action.equals("modify")) {
+            ContactDataModel cdm = (ContactDataModel)getIntent().getSerializableExtra("dataObject");
+            fillDataFields(cdm);
+        }else{return;}
 
 
         addButton=(Button)findViewById(R.id.modifyButton);
@@ -62,6 +74,7 @@ public class DetailsActivity extends Activity {
                     public void onClick(View v) {
                         Log.i(tag, "firstname");
                         deleteData();
+
                     }
                 }
         );
@@ -70,7 +83,6 @@ public class DetailsActivity extends Activity {
 //        cancelButton.setOnClickListener(
 //                new Button.OnClickListener() {
 //                    public void onClick(View v) {
-//                        Log.v(tag,"asdfa");
 //                        DetailsActivity.this.finish();
 //                    }
 //                }
@@ -88,6 +100,9 @@ public class DetailsActivity extends Activity {
             cdm.setLname(lNameField.getText().toString());
             cdm.setEmail(emailField.getText().toString());
             cdm.setPhone(phoneField.getText().toString());
+
+            int id=Integer.parseInt(fw.getMaxId());
+            cdm.setId(String.valueOf(id+1));
 
             ArrayList<ContactDataModel> contactList=fw.getContactObject();
             contactList.add(cdm);
@@ -107,11 +122,11 @@ public class DetailsActivity extends Activity {
 
     }
     public boolean validateFields() {
-        Log.i(tag,"firstname");
+
 
         EditText firstName = (EditText) findViewById(R.id.newfirstNameField);
         if (firstName.getText().toString().length() == 0) {
-            Log.i(tag,"firstname");
+
             firstName.setError("First name is required!");
             return false;
         }
@@ -153,5 +168,7 @@ public class DetailsActivity extends Activity {
     }
 
 
-
+    public void fillDataFields(ContactDataModel cdm) {
+        
+    }
 }
