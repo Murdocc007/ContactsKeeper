@@ -19,6 +19,8 @@ import android.util.Log;
 
 public class DetailsActivity extends Activity {
 
+    Button modifyButton, deleteButton, addButton;
+    EditText fNameField, lNameField, emailField, phoneField;
     private static final String tag="here";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +28,40 @@ public class DetailsActivity extends Activity {
         setContentView(R.layout.activity_details);
 
 
-        Button saveButton=(Button)findViewById(R.id.modifyButton);
+        addButton=(Button)findViewById(R.id.modifyButton);
+        modifyButton=(Button)findViewById(R.id.modifyButton);
+        deleteButton=(Button)findViewById(R.id.deleteButton);
+
+
+        fNameField=(EditText)findViewById(R.id.newfirstNameField);
+        lNameField=(EditText) findViewById(R.id.newlastNameField);
+        emailField=(EditText)findViewById(R.id.newemailIdField);
+        phoneField=(EditText)findViewById(R.id.newphoneNumberField);
+
         Log.i(tag, "firstname");
-        saveButton.setOnClickListener(
+        addButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
                         Log.i(tag, "firstname");
-                        saveData();
+                        addData();
+                    }
+                }
+        );
+
+        modifyButton.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Log.i(tag, "firstname");
+                        modifyData();
+                    }
+                }
+        );
+
+        deleteButton.setOnClickListener(
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
+                        Log.i(tag, "firstname");
+                        deleteData();
                     }
                 }
         );
@@ -50,23 +79,15 @@ public class DetailsActivity extends Activity {
     }
 
 
-    public void saveData() {
+    public void addData() {
         if (validateFields()) {
-            EditText str;
             ContactDataModel cdm = new ContactDataModel();
             FileWriter fw=new FileWriter(this.getApplicationContext());
 
-            str = (EditText) findViewById(R.id.newfirstNameField);
-            cdm.setFname(str.getText().toString());
-
-            str = (EditText) findViewById(R.id.newlastNameField);
-            cdm.setLname(str.getText().toString());
-
-            str = (EditText) findViewById(R.id.newemailIdField);
-            cdm.setEmail(str.getText().toString());
-
-            str = (EditText) findViewById(R.id.newphoneNumberField);
-            cdm.setPhone(str.getText().toString());
+            cdm.setFname(fNameField.getText().toString());
+            cdm.setLname(lNameField.getText().toString());
+            cdm.setEmail(emailField.getText().toString());
+            cdm.setPhone(phoneField.getText().toString());
 
             ArrayList<ContactDataModel> contactList=fw.getContactObject();
             contactList.add(cdm);
@@ -76,6 +97,15 @@ public class DetailsActivity extends Activity {
         }
     }
 
+    /*read this particular object from the fields and modify the arraylist and write to
+    file*/
+    public void modifyData() {
+
+    }
+
+    public void deleteData() {
+
+    }
     public boolean validateFields() {
         Log.i(tag,"firstname");
 
