@@ -126,7 +126,7 @@ public class DetailsActivity extends Activity {
             fw.setContactObject(contactList);
 
             removeDataFromFields();
-            Toast.makeText(getApplicationContext(), "data added", Toast.LENGTH_LONG);
+            Toast.makeText(getApplicationContext(), "data added", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
@@ -157,7 +157,7 @@ public class DetailsActivity extends Activity {
             }
             fw.setContactObject(dataList);
             removeDataFromFields();
-            Toast.makeText(getApplicationContext(), "data modified", Toast.LENGTH_LONG);
+            Toast.makeText(getApplicationContext(), "data modified", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
@@ -181,7 +181,7 @@ public class DetailsActivity extends Activity {
             }
             fw.setContactObject(dataList);
             removeDataFromFields();
-            Toast.makeText(getApplicationContext(), "data deleted", Toast.LENGTH_LONG);
+            Toast.makeText(getApplicationContext(), "data deleted", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
