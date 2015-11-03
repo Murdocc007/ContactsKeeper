@@ -34,11 +34,12 @@ public class HomeActivity extends Activity {
         super.onResume();
         FileWriter fw=new FileWriter(this.getApplicationContext());
         final ArrayList<ContactDataModel> dataList=fw.getContactObject();
-
+        contactDataModelArrayList.removeAll(contactDataModelArrayList);
         for (ContactDataModel temp:dataList)
         {
             contactDataModelArrayList.add(temp);
         }
+
 
         ContactDataAdapter contactDataAdapter = new ContactDataAdapter(getApplicationContext(), contactDataModelArrayList);
         contactList.setAdapter(contactDataAdapter);
