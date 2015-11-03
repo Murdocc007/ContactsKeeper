@@ -29,6 +29,14 @@ public class DetailsActivity extends Activity {
         Bundle homedata=getIntent().getExtras();
         String action=homedata.getString("action");
 
+        //there would be two different functions here based on the action
+        //the corresponding function will be called
+        if (action.equals("modify")) {
+            ContactDataModel cdm = (ContactDataModel)getIntent().getSerializableExtra("dataObject");
+            fillDataFields(cdm);
+        }else{return;}
+
+
         Button saveButton=(Button)findViewById(R.id.modifyButton);
 
         saveButton.setOnClickListener(
@@ -127,5 +135,9 @@ public class DetailsActivity extends Activity {
     }
 
 
+    public void addData(){}
 
+    public void fillDataFields(ContactDataModel cdm) {
+        
+    }
 }
