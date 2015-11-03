@@ -155,7 +155,7 @@ public class FileWriter {
     }
 
 
-    public  String getMaxId() {
+    public String getMaxId() {
         ContactDataModel temp;
         String str;
         int maxid=0;
@@ -171,6 +171,7 @@ public class FileWriter {
                     maxid=Integer.parseInt(temp.getId());
                 }
             }
+            temp=convertStringtoObject(str);
         }catch(IOException e){
             e.printStackTrace();
         }

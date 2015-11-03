@@ -17,17 +17,31 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import android.util.Log;
+import android.widget.Toast;
 
 public class DetailsActivity extends Activity {
 
     Button modifyButton, deleteButton, addButton;
     EditText fNameField, lNameField, emailField, phoneField;
+    LinearLayout buttonContainer;
+    int id;
     private static final String tag="here";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        addButton=(Button)findViewById(R.id.addButton);
+        modifyButton=(Button)findViewById(R.id.modifyButton);
+        deleteButton=(Button)findViewById(R.id.deleteButton);
+
+
+        fNameField=(EditText)findViewById(R.id.newfirstNameField);
+        lNameField=(EditText) findViewById(R.id.newlastNameField);
+        emailField=(EditText)findViewById(R.id.newemailIdField);
+        phoneField=(EditText)findViewById(R.id.newphoneNumberField);
+        buttonContainer=(LinearLayout)findViewById(R.id.buttonsContainer);
 
         Bundle homedata=getIntent().getExtras();
         String action=homedata.getString("action");
@@ -37,25 +51,21 @@ public class DetailsActivity extends Activity {
         if (action.equals("modify")) {
             ContactDataModel cdm = (ContactDataModel)getIntent().getSerializableExtra("dataObject");
             fillDataFields(cdm);
-        }else{return;}
-
-
-        addButton=(Button)findViewById(R.id.modifyButton);
-        modifyButton=(Button)findViewById(R.id.modifyButton);
-        deleteButton=(Button)findViewById(R.id.deleteButton);
-
-
-        fNameField=(EditText)findViewById(R.id.newfirstNameField);
-        lNameField=(EditText) findViewById(R.id.newlastNameField);
-        emailField=(EditText)findViewById(R.id.newemailIdField);
-        phoneField=(EditText)findViewById(R.id.newphoneNumberField);
+            buttonContainer.setVisibility(ViewGroup.VISIBLE);
+            addButton.setVisibility(View.INVISIBLE);
+        }else if (action.equals("add")){
+            buttonContainer.setVisibility(ViewGroup.INVISIBLE);
+            addButton.setVisibility(View.VISIBLE);
+        }else {
+            return;
+        }
 
         Log.i(tag, "firstname");
         addButton.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
                         Log.i(tag, "firstname");
-                        addData();
+                        addDataToFile();
                     }
                 }
         );
@@ -64,7 +74,7 @@ public class DetailsActivity extends Activity {
                 new Button.OnClickListener() {
                     public void onClick(View v) {
                         Log.i(tag, "firstname");
-                        modifyData();
+                        modifyDataInFile();
                     }
                 }
         );
@@ -91,7 +101,7 @@ public class DetailsActivity extends Activity {
     }
 
 
-    public void addData() {
+    public void addDataToFile() {
         if (validateFields()) {
             ContactDataModel cdm = new ContactDataModel();
             FileWriter fw=new FileWriter(this.getApplicationContext());
@@ -101,7 +111,12 @@ public class DetailsActivity extends Activity {
             cdm.setEmail(emailField.getText().toString());
             cdm.setPhone(phoneField.getText().toString());
 
-            int id=Integer.parseInt(fw.getMaxId());
+            //int id=Integer.parseInt(fw.getMaxId());
+            if(fw.getMaxId() == null){
+                id=1;
+            }else{
+                id=Integer.parseInt(fw.getMaxId());
+            }
             cdm.setId(String.valueOf(id+1));
 
             ArrayList<ContactDataModel> contactList=fw.getContactObject();
@@ -109,13 +124,18 @@ public class DetailsActivity extends Activity {
 
             fw.setContactObject(contactList);
 
+            removeDataFromFields();
+            Toast.makeText(getApplicationContext(), "data added", Toast.LENGTH_SHORT);
+
         }
     }
 
     /*read this particular object from the fields and modify the arraylist and write to
     file*/
-    public void modifyData() {
+    public void modifyDataInFile() {
+        if (validateFields()) {
 
+        }
     }
 
     public void deleteData() {
@@ -168,7 +188,18 @@ public class DetailsActivity extends Activity {
     }
 
 
+    /* This function will fill all the data fields with the passed object values */
     public void fillDataFields(ContactDataModel cdm) {
-        
+        fNameField.setText(cdm.getFname());
+        lNameField.setText(cdm.getLname());
+        emailField.setText(cdm.getEmail());
+        phoneField.setText(cdm.getPhone());
+    }
+
+    public void removeDataFromFields() {
+        fNameField.setText("");
+        lNameField.setText("");
+        emailField.setText("");
+        phoneField.setText("");
     }
 }

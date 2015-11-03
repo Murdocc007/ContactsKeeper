@@ -21,6 +21,7 @@ public class HomeActivity extends Activity {
     ListView contactList;
     ContactDataModel contactDataModel;
     ArrayList<ContactDataModel> contactDataModelArrayList = new ArrayList<>();
+    ContactDataAdapter contactDataAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +41,10 @@ public class HomeActivity extends Activity {
             contactDataModelArrayList.add(temp);
         }
 
-        ContactDataAdapter contactDataAdapter = new ContactDataAdapter(getApplicationContext(), contactDataModelArrayList);
+        contactDataAdapter = new ContactDataAdapter(getApplicationContext(), contactDataModelArrayList);
         contactList.setAdapter(contactDataAdapter);
 
-        Collections.sort(contactDataModelArrayList, ContactDataModel.firstNameComparator);
+        //Collections.sort(contactDataModelArrayList, ContactDataModel.firstNameComparator);
 
         contactList.setOnItemClickListener(new OnItemClickListener() {
 
@@ -84,4 +85,5 @@ public class HomeActivity extends Activity {
         intent.putExtra("dataObject",cdm);
         startActivity(intent);
     }
+
 }
