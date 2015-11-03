@@ -180,7 +180,7 @@ public class FileWriter {
                     maxid=Integer.parseInt(temp.getId());
                 }
             }
-            temp=convertStringtoObject(str);
+            //temp=convertStringtoObject(str);
         }catch(IOException e){
             e.printStackTrace();
         }
