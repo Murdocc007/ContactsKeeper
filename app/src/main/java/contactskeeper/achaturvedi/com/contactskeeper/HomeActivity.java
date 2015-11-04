@@ -18,11 +18,16 @@ import android.util.Log;
 public class HomeActivity extends Activity {
 
 
-    ListView contactList;
+    ListView contactList;//listview of the contact list
     ContactDataModel contactDataModel;
     ArrayList<ContactDataModel> contactDataModelArrayList = new ArrayList<>();
     ContactDataAdapter contactDataAdapter;
     @Override
+
+    //Name: Akash Chaturvedi
+    //NetId:axc144430@utdallas.edu
+    //Date:11/1/20
+    //setting the content view
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -31,23 +36,30 @@ public class HomeActivity extends Activity {
 
 
     @Override
+    //Name: Aditya Mahajan
+    //NetId: axm156630
+    //Date: 11/2/2015
+    //used to set the main screen everytime onresume is called
     protected void onResume() {
         super.onResume();
         FileWriter fw=new FileWriter(this.getApplicationContext());
-        final ArrayList<ContactDataModel> dataList=fw.getContactObject();
-        contactDataModelArrayList.removeAll(contactDataModelArrayList);
+        final ArrayList<ContactDataModel> dataList=fw.getContactObject();//reading the txt file for contact details
+        contactDataModelArrayList.removeAll(contactDataModelArrayList);//clearing the contactdatalist arraylist
+
+        //appending the new objects to the array list
         for (ContactDataModel temp:dataList)
         {
             contactDataModelArrayList.add(temp);
         }
 
+        //setting the contactDataModel arraylist to the contactdataAdapter
         contactDataAdapter = new ContactDataAdapter(getApplicationContext(), contactDataModelArrayList);
-
         contactList.setAdapter(contactDataAdapter);
 
 
         //Collections.sort(contactDataModelArrayList, ContactDataModel.firstNameComparator);
 
+        //clicking on any contact will open the details view in Modify Mode
         contactList.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
@@ -59,6 +71,9 @@ public class HomeActivity extends Activity {
     }
 
 
+    //Name: Akash Chaturvedi
+    //NetId:axc144430@utdallas.edu
+    //Date:11/1/2015
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -66,6 +81,9 @@ public class HomeActivity extends Activity {
         return true;
     }
 
+    //Name: Akash Chaturvedi
+    //NetId:axc144430@utdallas.edu
+    //Date:11/1/2015
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -82,6 +100,10 @@ public class HomeActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    //Name: Aditya Mahajan
+    //NetId: axm156630
+    //Date: 11/2/2015
+    //function that redirects to the details activity page, where we  can see the details of a contact
     public void toDetailsActivity(String action,ContactDataModel cdm) {
         Intent intent = new Intent(this, DetailsActivity.class).putExtra("action", action);
         intent.putExtra("dataObject",cdm);

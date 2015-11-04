@@ -28,6 +28,9 @@ public class DetailsActivity extends Activity {
     int id;
     private static final String tag="here";
 
+    //Name: Akash Chaturvedi
+    //NetId:axc144430@utdallas.edu
+    //Date:11/1/2015
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +105,10 @@ public class DetailsActivity extends Activity {
     }
 
 
+    //Name: Akash Chaturvedi
+    //NetId:axc144430@utdallas.edu
+    //Date:11/1/2015
+    //adds the field data to the txt file
     public void addDataToFile() {
         if (validateFields()) {
             ContactDataModel cdm = new ContactDataModel();
@@ -131,6 +138,10 @@ public class DetailsActivity extends Activity {
         }
     }
 
+
+    //Name: Akash Chaturvedi
+    //NetId:axc144430@utdallas.edu
+    //Date:11/1/2015
     /*read this particular object from the fields and modify the arraylist and write to
     file*/
     public void modifyDataInFile(ContactDataModel cdm) {
@@ -162,6 +173,9 @@ public class DetailsActivity extends Activity {
         }
     }
 
+    //Name: Akash Chaturvedi
+    //NetId:axc144430@utdallas.edu
+    //Date:11/1/2015
     public void deleteData() {
         if (validateFields()) {
             //first read all data from the file and
@@ -185,6 +199,11 @@ public class DetailsActivity extends Activity {
             finish();
         }
     }
+
+    //Name: Aditya Mahajan
+    //NetId:axm156630@utdallas.edu
+    //Date:11/1/2015
+    //checks whether the firstname has been filled or not
     public boolean validateFields() {
 
 
@@ -213,6 +232,11 @@ public class DetailsActivity extends Activity {
         return true;
     }
 
+
+    //Name: Aditya Mahajan
+    //NetId:axm156630@utdallas.edu
+    //Date:11/1/2015
+    //checks the validity of the email id
     public boolean isEmailValid(String email)
     {
         if (email == null || TextUtils.isEmpty(email)) {
@@ -223,6 +247,10 @@ public class DetailsActivity extends Activity {
     }
 
 
+    //Name: Aditya Mahajan
+    //NetId:axm156630@utdallas.edu
+    //Date:11/1/2015
+    //checks the validity of the phone number
     public  boolean isValidPhoneNumber(String target) {
         if (target == null || TextUtils.isEmpty(target)) {
             return false;
@@ -231,7 +259,9 @@ public class DetailsActivity extends Activity {
         }
     }
 
-
+    //Name: Akash Chaturvedi
+    //NetId:axc144430@utdallas.edu
+    //Date:11/1/2015
     /* This function will fill all the data fields with the passed object values */
     public void fillDataFields(ContactDataModel cdm) {
         fNameField.setText(cdm.getFname());
@@ -239,7 +269,10 @@ public class DetailsActivity extends Activity {
         emailField.setText(cdm.getEmail());
         phoneField.setText(cdm.getPhone());
     }
-
+    //Name: Akash Chaturvedi
+    //NetId:axc144430@utdallas.edu
+    //Date:11/1/2015
+    //removes all the data from the fields
     public void removeDataFromFields() {
         fNameField.setText("");
         lNameField.setText("");
