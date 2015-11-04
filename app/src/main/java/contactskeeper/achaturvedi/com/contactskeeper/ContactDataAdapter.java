@@ -9,9 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Akash on 10/27/2015.
- */
+
 public class ContactDataAdapter extends ArrayAdapter{
 
     private final Context context;
