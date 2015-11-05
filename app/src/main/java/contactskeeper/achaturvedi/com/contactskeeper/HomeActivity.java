@@ -57,7 +57,7 @@ public class HomeActivity extends Activity {
         contactList.setAdapter(contactDataAdapter);
 
 
-        //Collections.sort(contactDataModelArrayList, ContactDataModel.firstNameComparator);
+        Collections.sort(contactDataModelArrayList, ContactDataModel.firstNameComparator);
 
         //clicking on any contact will open the details view in Modify Mode
         contactList.setOnItemClickListener(new OnItemClickListener() {

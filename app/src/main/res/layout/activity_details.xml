@@ -165,7 +165,7 @@
                 android:layout_weight="50"
                 android:layout_height="match_parent"
                 android:text="Delete"
-                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/deleteButton"
                 />
 
@@ -174,7 +174,7 @@
                 android:layout_weight="50"
                 android:layout_height="match_parent"
                 android:text="Save"
-                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/modifyButton"
                 android:singleLine="true"
                 />
@@ -186,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Save"
-                android:textStyle="bold"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/addButton" />
         </RelativeLayout>
 
