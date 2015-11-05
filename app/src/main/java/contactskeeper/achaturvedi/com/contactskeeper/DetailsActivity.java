@@ -60,9 +60,11 @@ public class DetailsActivity extends Activity {
             fillDataFields(cdm);
             buttonContainer.setVisibility(ViewGroup.VISIBLE);
             addButton.setVisibility(View.INVISIBLE);
+            getActionBar().setTitle("Modify/Remove Contact");
         }else if (action.equals("add")){
             buttonContainer.setVisibility(ViewGroup.INVISIBLE);
             addButton.setVisibility(View.VISIBLE);
+            getActionBar().setTitle("Add New Contact");
         }else {
             return;
         }
