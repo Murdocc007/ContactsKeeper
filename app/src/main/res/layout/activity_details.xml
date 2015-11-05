@@ -28,6 +28,7 @@
             android:layout_weight="30"
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"
             android:text="@string/firstName"
             android:id="@+id/firstName"
             android:gravity="center_vertical|right"
@@ -40,7 +41,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/newfirstNameField"
-            android:hint="first name..."
+            android:hint="First name goes here..."
             />
     </LinearLayout>
 
@@ -56,6 +57,7 @@
             android:layout_width="0dp"
             android:layout_weight="30"
             android:layout_height="match_parent"
+            android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/lastName"
             android:id="@+id/lastName"
@@ -68,7 +70,7 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/newlastNameField"
-            android:hint="last name..."
+            android:hint="Last name goes here..."
             />
     </LinearLayout>
 
@@ -86,6 +88,7 @@
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/emailId"
+            android:textStyle="bold"
             android:id="@+id/emailId"
             android:gravity="center_vertical|right" />
 
@@ -96,7 +99,7 @@
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/newemailIdField"
-            android:hint="email id..."
+            android:hint="Email id goes here..."
             />
 
     </LinearLayout>
@@ -114,6 +117,7 @@
             android:layout_weight="30"
             android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="bold"
             android:text="@string/phoneNumber"
             android:id="@+id/phoneNumber"
             android:gravity="center_vertical|right" />
@@ -126,7 +130,7 @@
             android:inputType="phone"
             android:ems="10"
             android:id="@+id/newphoneNumberField"
-            android:hint="phone number..."
+            android:hint="Phone number goes here..."
             />
     </LinearLayout>
 
@@ -161,6 +165,7 @@
                 android:layout_weight="50"
                 android:layout_height="match_parent"
                 android:text="Delete"
+                android:textStyle="bold"
                 android:id="@+id/deleteButton"
                 />
 
@@ -169,6 +174,7 @@
                 android:layout_weight="50"
                 android:layout_height="match_parent"
                 android:text="Save"
+                android:textStyle="bold"
                 android:id="@+id/modifyButton"
                 android:singleLine="true"
                 />
@@ -180,6 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Save"
+                android:textStyle="bold"
                 android:id="@+id/addButton" />
         </RelativeLayout>
 

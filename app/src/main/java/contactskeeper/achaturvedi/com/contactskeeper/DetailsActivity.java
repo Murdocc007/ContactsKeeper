@@ -1,13 +1,16 @@
 package contactskeeper.achaturvedi.com.contactskeeper;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -133,7 +136,7 @@ public class DetailsActivity extends Activity {
             fw.setContactObject(contactList);
 
             //removeDataFromFields();
-            Toast.makeText(getApplicationContext(), "data added", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Contact saved", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
@@ -168,7 +171,7 @@ public class DetailsActivity extends Activity {
             }
             fw.setContactObject(dataList);
             //removeDataFromFields();
-            Toast.makeText(getApplicationContext(), "data modified", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Contact modified", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
@@ -195,7 +198,7 @@ public class DetailsActivity extends Activity {
             }
             fw.setContactObject(dataList);
             //removeDataFromFields();
-            Toast.makeText(getApplicationContext(), "data deleted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Contact removed", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
@@ -278,5 +281,13 @@ public class DetailsActivity extends Activity {
         lNameField.setText("");
         emailField.setText("");
         phoneField.setText("");
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.
+                INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        return true;
     }
 }
