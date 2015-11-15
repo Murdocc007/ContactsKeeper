@@ -1,6 +1,8 @@
 package contactskeeper.achaturvedi.com.contactskeeper;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
@@ -92,7 +94,7 @@ public class DetailsActivity extends Activity {
                 new Button.OnClickListener() {
                     public void onClick(View v) {
                         Log.i(tag, "firstname");
-                        deleteData();
+                        deleteDataConfirmation();
 
                     }
                 }
@@ -181,6 +183,35 @@ public class DetailsActivity extends Activity {
     //Name: Akash Chaturvedi
     //NetId:axc144430@utdallas.edu
     //Date:11/1/2015
+    //function to invoke a dialog box for delete confirmation
+    public void deleteDataConfirmation() {
+        //confirm user action before delting data
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        //Yes button clicked
+                        deleteData();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        return;
+                        //break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
+    }
+
+    //Name: Aditya Mahajan
+    //NetId:axm156630@utdallas.edu
+    //Date:11/1/2015
+    //function to delete the data from the file
     public void deleteData() {
         if (validateFields()) {
             //first read all data from the file and
