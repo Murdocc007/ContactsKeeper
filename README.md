@@ -15,4 +15,4 @@
 2. Open the cloned repo in Android Studio using 'existing project' option
 3. Compile and run, install the app in an Android device
 
-[![ScreenShot](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://www.youtube.com/watch?v=MwgFUFLO6-o&feature=youtu.be&a)
+[![ScreenShot](http://img.youtube.com/vi/MwgFUFLO6-o/0.jpg)](https://www.youtube.com/watch?v=MwgFUFLO6-o&feature=youtu.be&a)
